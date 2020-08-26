@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+  logger-service:
+    image: luismendoza2295/logger-demo
+    container_name: logger-container
+    ports:
+      - '8080:8080'
+    environment:
+      - SPRING_APPLICATION_JSON=
+        {
+          "logger.file.path":"/usr/local/tomcat/logs/logfile.txt"
+        }
