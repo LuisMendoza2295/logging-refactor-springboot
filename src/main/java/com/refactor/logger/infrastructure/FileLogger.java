@@ -24,10 +24,16 @@ public class FileLogger implements Loggable {
         this.destinationPath = Paths.get(pathString);
     }
 
+    /**
+     *
+     * @param message to be logged
+     * @param loggerLevel indicates the message logging level
+     * @return the logged message
+     */
     @Override
     public String log(String message, LoggerLevel loggerLevel) {
         if (!FileUtil.createPathIfNotExists(destinationPath)) {
-            System.out.println("Log file does not exists or could not be created");
+            throw new IllegalArgumentException("Log file does not exists or could not be created");
         }
 
         // Supposed to be only one handler at a time
@@ -42,7 +48,7 @@ public class FileLogger implements Loggable {
 
             handler.close();
         } catch (IOException e) {
-            System.out.println("Could not log into file (missed file maybe?)");
+            throw new IllegalArgumentException("Could not log into file (missed file maybe?)");
         }
 
         return message;

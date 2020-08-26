@@ -17,6 +17,12 @@ public class DatabaseLogger implements Loggable {
         this.loggerRepositoryJpa = loggerRepositoryJpa;
     }
 
+    /**
+     *
+     * @param message to be logged
+     * @param loggerLevel indicates the message logging level
+     * @return the logged message
+     */
     @Override
     public String log(String message, LoggerLevel loggerLevel) {
         LoggerEntity loggerEntity = new LoggerEntity();

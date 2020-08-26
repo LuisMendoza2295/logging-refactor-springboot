@@ -24,8 +24,9 @@ public class LoggerManagerImpl implements LoggerManager {
 
     @Override
     public String log(String message, LoggerLevel loggerLevel) {
+        if (this.availableLoggers.isEmpty()) throw new IllegalArgumentException("No loggers provided");
         if (StringUtils.isBlank(message)) throw new IllegalArgumentException("No message provided");
-        if (loggerLevel == null) throw new IllegalArgumentException("No logging level provided");
+        if (loggerLevel == null) throw new IllegalArgumentException("No logger level provided");
 
         String parsedMessage = loggerLevel.parseMessage(message);
 
